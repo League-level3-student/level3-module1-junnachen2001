@@ -18,7 +18,7 @@ public class DynamicIntegerArray {
 		int[] array = new int[arr.length + 1];
 		//B. set the last element of your new array to 
 		//   the value passed into the method
-		array[array.length - 1] = v;
+		array[arr.length] = v;
 		//C. iterate through the member array and 
 		//   copy every element from the member array 
 		//   to the new array
@@ -75,30 +75,39 @@ public class DynamicIntegerArray {
 	//9. Complete the steps in the remove method
 	public void remove(int location) {
 		//A. create a new array that is one element smaller than the member array
-		
+		int[] array = new int[arr.length - 1];
 		//B. make a for loop to iterate through the member array
-		
+		for(int i = 0; i < arr.length; i++) {
 			//C. if i  is less than location
 			//		set the element at i of the new array to the element at i of the member array
-			
+			if(i < location) {
+				array[i] = arr[i];
+			}
 			//D. if i  is less than location
 			//		set the element at i -1 of the new array to the element at i of the member array
-			
+			else if(i > location) {
+				array[i - 1] = arr[i];
+			}
 			//E. else, continue;
-			
+			else {
+				continue;
+			}
+		}
 		//F. set the member array equal to the new array
+		arr = array;
 	}
 	
 	//10. Run the tests again the see if you are correct so far
 	
 	//11. Complete the size method so that it returns the length of the member array.
 	public int size() {
-		return 0;
+		return arr.length;
 	}
 	
 	//12. Complete the clear array so that it sets the member array 
 	//    equal to a new integer array of size 0
 	public void clear() {
+		arr = new int[0];
 	}
 	
 	//13. Run the test again to see if you are finished.
