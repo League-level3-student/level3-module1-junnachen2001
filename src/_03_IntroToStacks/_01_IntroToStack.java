@@ -18,9 +18,18 @@ public class _01_IntroToStack {
 		//3. Ask the user to enter in two numbers between 0 and 100, inclusive. 
 		String num1String = JOptionPane.showInputDialog("Enter a number between 0 and 100, inclusive");
 		String num2String = JOptionPane.showInputDialog("Enter another number between 0 and 100, inclusive");
+		int num1 = Integer.parseInt(num1String);
+		int num2 = Integer.parseInt(num2String);
 		//4. Pop all the elements off of the Stack. Every time a double is popped that is
 		//   between the two numbers entered by the user, print it to the screen.
-		
+		System.out.println("Popping elements off stack...");
+		System.out.println("Elements between " + num1 + " and " + num2);
+		for(int i = 0; i < numbers.size(); i++) {
+			double num = numbers.pop();
+			if((num > num1) && (num < num2)) {
+				System.out.println(num);
+			}
+		}
 		
 		//   EXAMPLE:
 		//   NUM 1: 65

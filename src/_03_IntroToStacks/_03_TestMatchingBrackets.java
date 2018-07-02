@@ -20,8 +20,28 @@ public class _03_TestMatchingBrackets {
 
 	// USE A STACK TO COMPLETE THE METHOD FOR CHECKING IF EVERY OPENING BRACKET HAS A MATCHING CLOSING BRACKET
 	private boolean doBracketsMatch(String b) {
-		
-		return false;
+		Stack<Character> brackets = new Stack<Character>();
+		for(int i = 0; i < b.length(); i++) {
+			brackets.push(b.charAt(i));
+		}
+		int matched = 0;
+		System.out.println(brackets.pop());
+		for(int i = 0; i <= brackets.size(); i++) {
+			char popped = brackets.pop();
+			System.out.println(popped);
+			if(popped == '}') {
+				matched++;
+			}
+			else if(popped == '{'){
+				matched--;
+			}
+		}
+		System.out.println(matched);
+		if(matched == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-
 }
