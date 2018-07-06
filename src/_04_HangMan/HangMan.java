@@ -50,7 +50,7 @@ public class HangMan{
 		hiddenWord = new ArrayList<String>();
 		for(int i = 0; i < word.length(); i++) {
 			displayedWord.add(word.substring(i, i + 1));
-			hiddenWord.add("_ ");
+			hiddenWord.add("_");
 		}
 	}
 	
@@ -63,19 +63,43 @@ public class HangMan{
 	}
 	
 	public void playGame() {
-		while(!(convert(hiddenWord).equals(word))) {
+		System.out.println(convert(displayedWord));
+		while(!(convert(hiddenWord).equals(word)) && (lives >= 0)) {
+			boolean correctGuess = false;
 			String guess = JOptionPane.showInputDialog("Enter a guess");
-			for(int i = 0; i < word.length(); i++) {
+			for(int i = 0; i < displayedWord.size(); i++) {
 				if(displayedWord.get(i).equals(guess)) {
 					hiddenWord.set(i, displayedWord.get(i));
 					label1.setText(convert(hiddenWord));
-				}
-				else {
-					lives--;
-					label2.setText("Lives: " + lives);
+					correctGuess = true;
 				}
 			}
+			if(correctGuess == false) {
+				lives--;
+				label2.setText("Lives: " + lives);
+			}
 		}
+		if(lives < 0) {
+			int answer = JOptionPane.showConfirmDialog(null, "Ran out of lives. Do you want to restart?", 
+					"Message", JOptionPane.YES_NO_OPTION);
+			if(answer == 0) {
+				restart();
+			}
+		}
+		if(convert(hiddenWord).equals(word)) {
+			int answer = JOptionPane.showConfirmDialog(null, "You guessed the word. Do you want to restart?", 
+					"Message", JOptionPane.YES_NO_OPTION);
+			if(answer == 0) {
+				restart();
+			}
+		}
+	}
+	
+	public void restart() {
+		lives = 10; 
+		setUp();
+		createUI();
+		playGame();
 	}
 	
 	public static void main(String[] args) {
